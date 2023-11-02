@@ -4,8 +4,9 @@ using Proyetct11.DataAccess.Repository;
 using Proyetct11.DataAccess.Repository.IRepository;
 using Proyetct11.Models;
 
-namespace Proyetct1.Controllers
+namespace Proyetct1.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -49,7 +50,7 @@ namespace Proyetct1.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id==id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
