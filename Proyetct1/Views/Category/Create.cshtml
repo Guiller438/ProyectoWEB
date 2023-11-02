@@ -1,0 +1,34 @@
+﻿@model Category
+
+< <form method="post" class="row">
+    <div class="border p3 mt-4">
+        @*<div asp-validation-summary="ModelOnly"></div>*@
+        <h2 class="text-primary">Crer Categoria</h2>
+        <div class="form-floating py-2 col-12">
+            <input asp-for="Name" class="form-control border-0 shadow" />
+            <label asp-for="Name" class="ms-2"></label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12">
+            <input asp-for="DisplayOrder" class="form-control border-0 shadow" />
+            <label asp-for="DisplayOrder" class="ms-2"></label>
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" classs="btn btn-primary form-control">Crear</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-outline-primary form-control">
+                    Volver a la lista
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
