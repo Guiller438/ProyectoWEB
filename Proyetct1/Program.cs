@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Proyetct1.Data;
+using Proyetct11.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

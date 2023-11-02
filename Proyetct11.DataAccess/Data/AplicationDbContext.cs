@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Proyetct1.Models;
+using Proyetct11.Models;
 
-namespace Proyetct1.Data
+namespace Proyetct11.DataAccess.Data
 {
     public class AplicationDbContext : DbContext
     {

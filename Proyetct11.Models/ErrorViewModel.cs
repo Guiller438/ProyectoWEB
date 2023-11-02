@@ -1,4 +1,4 @@
-namespace Proyetct1.Models
+namespace Proyetct11.Models
 {
     public class ErrorViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Proyetct1.Data;
-using Proyetct1.Models;
+using Proyetct11.DataAccess.Data;
+using Proyetct11.Models;
 
 namespace Proyetct1.Controllers
 {

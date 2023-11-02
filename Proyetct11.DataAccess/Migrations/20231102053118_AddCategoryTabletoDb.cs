@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Proyetct1.Migrations
+namespace Proyetct11.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTabletoDb : Migration

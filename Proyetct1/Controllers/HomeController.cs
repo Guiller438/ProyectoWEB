@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Proyetct1.Models;
+using Proyetct11.Models;
 using System.Diagnostics;
 
 namespace Proyetct1.Controllers

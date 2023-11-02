@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Proyetct1.Data;
+using Proyetct11.DataAccess.Data;
 
 #nullable disable
 
-namespace Proyetct1.Migrations
+namespace Proyetct11.DataAccess.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    [Migration("20231102053118_AddCategoryTabletoDb")]
-    partial class AddCategoryTabletoDb
+    partial class AplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,6 +40,26 @@ namespace Proyetct1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 1,
+                            Name = "Routers"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 2,
+                            Name = "Planes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayOrder = 3,
+                            Name = "FibraOptica"
+                        });
                 });
 #pragma warning restore 612, 618
         }
