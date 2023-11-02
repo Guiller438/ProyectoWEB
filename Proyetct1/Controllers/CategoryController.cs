@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Proyetct11.DataAccess.Data;
+using Proyetct11.DataAccess.Repository;
+using Proyetct11.DataAccess.Repository.IRepository;
 using Proyetct11.Models;
 
 namespace Proyetct1.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly AplicationDbContext _db;
-        public CategoryController(AplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -31,8 +33,8 @@ namespace Proyetct1.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);//le decimos que es lo que tiene que agregar
-                _db.SaveChanges();//lo agrega
+                _unitOfWork.Category.Add(obj);//le decimos que es lo que tiene que agregar
+                _unitOfWork.Save();//lo agrega
                 TempData["success"] = "La categoria ha sido creada de manera exitosa";
                 return RedirectToAction("Index");//Nos devuelve al Index de la pagina
 
@@ -47,7 +49,7 @@ namespace Proyetct1.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id==id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -61,8 +63,8 @@ namespace Proyetct1.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);//le decimos que es lo que tiene que agregar
-                _db.SaveChanges();//lo agrega
+                _unitOfWork.Category.Update(obj);//le decimos que es lo que tiene que agregar
+                _unitOfWork.Save();//lo agrega
                 TempData["success"] = "La categoria ha sido editada de manera exitosa";
                 return RedirectToAction("Index");
             }
@@ -75,7 +77,7 @@ namespace Proyetct1.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -86,13 +88,13 @@ namespace Proyetct1.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "La categoria ha sido eliminada de manera exitosa";
             return RedirectToAction("Index");
 
