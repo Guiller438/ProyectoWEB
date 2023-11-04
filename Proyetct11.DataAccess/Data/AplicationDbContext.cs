@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Proyetct11.Models;
 
 namespace Proyetct11.DataAccess.Data
 {
-    public class AplicationDbContext : DbContext
+    public class AplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public AplicationDbContext(DbContextOptions<AplicationDbContext> options) : base(options)
         {
@@ -12,9 +14,14 @@ namespace Proyetct11.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Routers", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "Planes", DisplayOrder = 2 },

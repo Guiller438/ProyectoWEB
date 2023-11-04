@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Proyetct11.DataAccess.Data;
 using Proyetct11.DataAccess.Repository;
 using Proyetct11.DataAccess.Repository.IRepository;
 using Proyetct11.Models;
+using Proyetct11.Utility;
 
 namespace Proyetct1.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize (Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -14,13 +17,13 @@ namespace Proyetct1.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+        [Authorize(Roles = SD.Role_Admin)]
 
         public IActionResult Index()
         {
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
-
         public IActionResult Create()
         {
             return View();
