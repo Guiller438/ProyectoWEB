@@ -9,7 +9,7 @@ using Proyetct11.Utility;
 namespace Proyetct1.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize (Roles = SD.Role_Admin)]
+    [Authorize (Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
