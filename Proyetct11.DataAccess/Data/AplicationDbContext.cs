@@ -15,6 +15,9 @@ namespace Proyetct11.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -116,6 +119,40 @@ namespace Proyetct11.DataAccess.Data
 
                 );
 
+
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company 
+                { 
+                            Id = 1, 
+                    Name = "GenApp", 
+                    StreetAddress= " Edificio Lugano, Luis Cordero E12-114", 
+                    City = "Quito", 
+                    PostalCode = "170109", 
+                    State="Pichincha", 
+                    PhoneNumber= "2-324-0361" 
+                },
+                new Company
+                {
+                     Id = 2,
+                     Name = "Tecnologia EMUNAY",
+                     StreetAddress = " C. 6",
+                     City = "Quito",
+                     PostalCode = "170310",
+                     State = "Pichincha",
+                     PhoneNumber = "+593 99 595 7889"
+                },
+                new Company
+                {
+                    Id = 3,
+                    Name = "Chtt Tecnología 2.0",
+                    StreetAddress = "Granda Centeno Oe4-550 y Sancho de la Carrera",
+                    City = "Quito",
+                    PostalCode = "170521",
+                    State = "Pichincha",
+                    PhoneNumber = "2-227-9577"
+                }
+                );
         }
 
     }
